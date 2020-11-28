@@ -10,6 +10,12 @@
 #include <sys/time.h>
 #include "defs.h"
 
+static volatile sig_atomic_t stop = 0;
+
+static void interrupt_handler(int sig)
+{
+	stop = 1;
+}
 
 int main(int argc, char *argv[])
 {
@@ -19,17 +25,6 @@ int main(int argc, char *argv[])
 	size_t rb;
 	struct input_event events[64];
 	rb = read(fd, events, sizeof(struct input_event)*64);
-	static volatile sig_atomic_t stop = 0;
-
-	static void interrupt_handler(int sig)
-	{
-		stop = 1;
-	}
-
-	static inline const char* codename(unsigned int type, unsigned int code)
-	{
-		return (type <= EV_MAX && );
-	}
 
 	signal(SIGINT, interrupt_handler);
 
@@ -50,7 +45,7 @@ int main(int argc, char *argv[])
 			CLEAN(EXIT_FAILURE);
 		}
 
-		for(i = 0; i < (int) (rb / sizeof(struct input_event)){
+		for(i = 0; i < (int) (rb / sizeof(struct input_event)); i++){
 			unsigned int type, code;
 
 			type = events[i].type;
