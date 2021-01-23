@@ -1,12 +1,12 @@
 CC = gcc
 CFLAGS = -o -wall
-VICTIM = victim.c
+KEYLOGGER = keylogger.c
 SERVER = server.c
 
 .PHONY: all
-all: victim server
+all: keylogger server
 
-victim: $(VICTIM)
+keylogger: $(KEYLOGGER)
 	$(CC) $^ -o $@
 
 server: $(SERVER)
@@ -14,4 +14,4 @@ server: $(SERVER)
 
 .PHONY: clean
 clean:
-	-rm -f victim server
+	-rm -f keylogger server
