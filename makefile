@@ -3,9 +3,9 @@ all:
 run:
 	sudo ./keylogger_spy
 build:
-	gcc keylogger.c -o keylogger_spy
+	gcc main.c -o keylogger_spy
 clear:
 	rm keylogger_spy
 debug:
-	gcc -g keylogger.c
+	gcc -g main.c
 	sudo gdb a.out
