@@ -96,14 +96,11 @@ int main(int argc, char *argv[])
 	struct sockaddr_storage their_addr; // Address information of client
 	socklen_t sin_size;
 	char s[INET_ADDRSTRLEN + 18];
-	char victim_doc[18] = " - victem_doc.txt";
+	char victim_doc[18] = " - victim_doc.txt";
 	char buffer[BUFFER_SIZE];
 	ssize_t bytes_recieved;
 	int i;
 	FILE *fp;
-
-	if((fp = fopen("victim_doc.txt","a")) == NULL)
-		perror("opening file failed");
 
 	sockfd = get_listener_socket_file_descriptor(PORT);
 
