@@ -1,11 +1,17 @@
-all:
-	echo "run, build, clear"
-run:
-	sudo ./keylogger_spy
-build:
-	gcc main.c -o keylogger_spy
-clear:
-	rm keylogger_spy
-debug:
-	gcc -g main.c
-	sudo gdb a.out
+CC = gcc
+CFLAGS = -o -wall
+KEYLOGGER = keylogger.c
+SERVER = server.c
+
+.PHONY: all
+all: keylogger server
+
+keylogger: $(KEYLOGGER)
+	$(CC) $^ -o $@
+
+server: $(SERVER)
+	$(CC) $^ -o $@
+
+.PHONY: clean
+clean:
+	-rm -f keylogger server
